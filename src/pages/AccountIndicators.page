@@ -5,6 +5,24 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:500" rel="stylesheet"/>
+    <style>
+        .wv-button {
+            font-family: 'Roboto', sans-serif;
+            font-size: 26px;
+            color: #fff;
+            -moz-border-radius:5px;
+            -webkit-border-radius:5px;
+            border-radius:5px;
+            display:inline-block;
+            text-align:center;
+            vertical-align: middle;
+            height: 60px;
+            width: 60px;
+            padding-top: 12px;
+        }
+    </style>
+   
 </head>
 
 <body>
@@ -12,7 +30,11 @@
         <apex:repeat value="{!indicators}" var="indicator">
             <div class="col-md-1">
                 <apex:outputPanel layout="_block" rendered="{!indicator.Display}">
-                    <img src="https://dabuttonfactory.com/button.png?t={!indicator.Value}&f=Calibri-Bold&ts=25&tc=fff&w=60&h=60&c=5&bgt=unicolored&bgc={!indicator.Color}" title="{!indicator.Hover}"/>
+<!--                     <img src="https://dabuttonfactory.com/button.png?t={!indicator.Value}&f=Calibri-Bold&ts=25&tc=fff&w=60&h=60&c=5&bgt=unicolored&bgc={!indicator.Color}" title="{!indicator.Hover}"/>
+ -->             
+                    <div class="wv-button" style="background-color:{!indicator.Color};" title="{!indicator.Hover}">
+                            {!indicator.Value}
+                    </div>       
                 </apex:outputPanel>
             </div>
         </apex:repeat>

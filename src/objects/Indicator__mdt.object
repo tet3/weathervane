@@ -93,7 +93,7 @@
         <externalId>false</externalId>
         <fieldManageability>SubscriberControlled</fieldManageability>
         <inlineHelpText>Text string visible on mouse hover of the icon.</inlineHelpText>
-        <label>Field API Name</label>
+        <label>Hover Text</label>
         <length>255</length>
         <required>false</required>
         <type>Text</type>
