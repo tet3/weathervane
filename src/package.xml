@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Weather Vane</fullName>
-    <apiAccessLevel>Unrestricted</apiAccessLevel>
-    <description>Weather Vane - see your constituent indicators from a distance</description>
-    <namespacePrefix>indicatorbar</namespacePrefix>
+    <fullName>Weathervane</fullName>
+    <description>Weathervane - see your constituent indicators from a distance</description>
     <types>
         <members>Indicators_CTRL</members>
         <members>Indicators_Service</members>
@@ -23,6 +21,7 @@
         <members>Indicator__mdt.Entity__c</members>
         <members>Indicator__mdt.Field_API_Name__c</members>
         <members>Indicator__mdt.Grid_Order__c</members>
+        <members>Indicator__mdt.Hover_Text__c</members>
         <members>Indicator__mdt.Type__c</members>
         <name>CustomField</name>
     </types>
@@ -37,6 +36,10 @@
     <types>
         <members>Indicator__mdt-Indicator Layout</members>
         <name>Layout</name>
+    </types>
+    <types>
+        <members>sldswv</members>
+        <name>StaticResource</name>
     </types>
     <version>36.0</version>
 </Package>

@@ -5,7 +5,7 @@
         <fullName>Contains_Value__c</fullName>
         <externalId>false</externalId>
         <fieldManageability>SubscriberControlled</fieldManageability>
-        <inlineHelpText>If the indicator type is &quot;Contains&quot;, the indicator will be enabled if the field specified in Field API Name contains this string. If the indicator type is &quot;greater than&quot;, the indicator will be enabled if the field specified is greater than this val.</inlineHelpText>
+        <inlineHelpText>If indicator type is &quot;Contains&quot;, indicator will be enabled if the field specified in Field API Name contains this string. If indicator type is &quot;greater than&quot;/&quot;less than&quot;, indicator will be enabled if the field specified is greater than/less than this val.</inlineHelpText>
         <label>Compare Value</label>
         <length>255</length>
         <required>false</required>
@@ -89,6 +89,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Hover_Text__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>SubscriberControlled</fieldManageability>
+        <inlineHelpText>Hover text that will appear on the Indicator badge.</inlineHelpText>
+        <label>Hover Text</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Type__c</fullName>
         <externalId>false</externalId>
         <fieldManageability>SubscriberControlled</fieldManageability>
@@ -104,11 +115,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Greater Than</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Less Than</fullName>
+                <fullName>Is Not Null</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
