@@ -1,0 +1,5 @@
+project:
+    name: Weathervane
+    package:
+        name: Weathervane
+        namespace: indicatorbar
