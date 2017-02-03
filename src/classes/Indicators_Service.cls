@@ -56,17 +56,12 @@ public class Indicators_Service {
 
 		// include null option as TEXT type and first to avoid null pointer exceptions and accomodate Blank indicator  
 		if (config.Display_Value__c == null || (config.Display_Value__c.length() <= 4 && !spriteSet.contains(config.Display_Value__c))) {
-			system.debug('Using text display for ' + config.Display_Value__c);
 			iType = 'TEXT';
 		} else if (Pattern.matches('custom[0-9]{1,3}',config.Display_Value__c)) {
-			system.debug('Custom sprite found for ' + config.Display_Value__c);
 			iType = 'CUSTOM_SPRITE';
 		} else if (spriteSet.contains(config.Display_Value__c)) {
-			system.debug('Standard sprite found for ' + config.Display_Value__c);
 			iType = 'STANDARD_SPRITE'; 
 		} else {
-			system.debug('No sprite found for ' + config.Display_Value__c + ' trying to add an error');
-			// ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'No valid icon found for Display Value ' + config.Display_Value__c + 'Check Indicator record ' + config.DeveloperName));
 			iType = 'TEXT';
 			throw new WeathervaneException('No valid icon found for Display Value ' + config.Display_Value__c + '. Check Indicator record ' + config.DeveloperName);
 		}
@@ -77,12 +72,18 @@ public class Indicators_Service {
 	public static Set<String> spriteSet {
 		get {
 			if (spriteSet == null) {
-/*				if (Cache.Org.contains('indicatorbar.partition1.spriteSet')) {
+/*				Commenting out Org Cache of Set of sprite names for now
+				if (Cache.Org.contains('indicatorbar.partition1.spriteSet')) {
 					return (Set<String>)Cache.Org.get('indicatorbar.partition1.spriteSet');
 				} else {
 */					
 					PageReference pr = new PageReference('/resource/sldswv/assets/icons/standard-sprite/svg/symbols.svg');
-					String content = pr.getContent().toString();
+					String content = '';
+					if (Test.isRunningTest()) {
+						content = Indicators_TEST.testSVG;
+					} else { 
+						content = pr.getContent().toString(); 
+					}
 					Pattern xmlid = Pattern.compile('id=\"[a-zA-Z_]+');
 					Matcher idMatcher = xmlid.matcher(content);
 					Set<String> idNames = new Set<String>();
@@ -92,10 +93,10 @@ public class Indicators_Service {
 					        idNames.add(idMatcher.group().substringAfter('="'));
 					    } while (idMatcher.find());
 					}
+					// see above re: org cache
 					// Cache.Org.put('indicatorbar.partition1.spriteSet',idNames);
 					return idNames;
 				}
-			// }
 			return spriteSet;
 		}
 		private set;
