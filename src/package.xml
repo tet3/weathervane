@@ -41,5 +41,9 @@
         <members>sldswv</members>
         <name>StaticResource</name>
     </types>
-    <version>36.0</version>
+    <types>
+        <members>Indicator__mdt.Display_Value</members>
+        <name>ValidationRule</name>
+    </types>
+    <version>38.0</version>
 </Package>
