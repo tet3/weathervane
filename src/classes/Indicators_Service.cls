@@ -57,7 +57,7 @@ public class Indicators_Service {
 		// include null option as TEXT type and first to avoid null pointer exceptions and accomodate Blank indicator  
 		if (config.Display_Value__c == null || (config.Display_Value__c.length() <= 4 && !spriteSet.contains(config.Display_Value__c))) {
 			iType = 'TEXT';
-		} else if (Pattern.matches('custom[0-9]{1,3}',config.Display_Value__c)) {
+		} else if (Pattern.matches('custom[0-9]{1,3}',config.Display_Value__c) && Integer.valueOf(config.Display_Value__c.substring(6)) <= 113) {
 			iType = 'CUSTOM_SPRITE';
 		} else if (spriteSet.contains(config.Display_Value__c)) {
 			iType = 'STANDARD_SPRITE'; 
@@ -69,38 +69,20 @@ public class Indicators_Service {
 		return new Indicator(config.Display_Value__c, enabled ? config.Enabled_Color__c : config.Disabled_Color__c, display, config.Hover_Text__c, iType);
 	}
 
-	public static Set<String> spriteSet {
-		get {
-			if (spriteSet == null) {
-/*				Commenting out Org Cache of Set of sprite names for now
-				if (Cache.Org.contains('indicatorbar.partition1.spriteSet')) {
-					return (Set<String>)Cache.Org.get('indicatorbar.partition1.spriteSet');
-				} else {
-*/					
-					PageReference pr = new PageReference('/resource/sldswv/assets/icons/standard-sprite/svg/symbols.svg');
-					String content = '';
-					if (Test.isRunningTest()) {
-						content = Indicators_TEST.testSVG;
-					} else { 
-						content = pr.getContent().toString(); 
-					}
-					Pattern xmlid = Pattern.compile('id=\"[a-zA-Z_]+');
-					Matcher idMatcher = xmlid.matcher(content);
-					Set<String> idNames = new Set<String>();
-
-					if (idMatcher.find()) {
-					    do {
-					        idNames.add(idMatcher.group().substringAfter('="'));
-					    } while (idMatcher.find());
-					}
-					// see above re: org cache
-					// Cache.Org.put('indicatorbar.partition1.spriteSet',idNames);
-					return idNames;
-				}
-			return spriteSet;
-		}
-		private set;
-	} 
+	public static final Set<String> spriteSet = new Set<String> 
+		{'carousel','case','case_change_status','case_comment','case_email','case_log_a_call','case_transcript','client',
+		'coaching','connected_apps','contact','contract','custom','custom_notification','dashboard','datadotcom','default',
+		'document','drafts','email','email_chatter','empty','endorsement','environment_hub','event','feed','feedback',
+		'file','flow','folder','forecasts','generic_loading','goals','group_loading','groups','hierarchy','home','household',
+		'insights','investment_account','lead','link','location','log_a_call','marketing_actions','merge','metrics','news',
+		'note','operating_hours','opportunity','orders','people','performance','person_account','photo','poll','portal','post',
+		'pricebook','process','product','product_consumed','product_item','product_item_transaction','product_required',
+		'product_transfer','question_best','question_feed','quotes','recent','record','related_list','relationship','report',
+		'resource_absence','resource_capacity','resource_preference','resource_skill','reward','rtc_presence','sales_path',
+		'scan_card','service_appointment','service_contract','service_report','service_resource','service_territory',
+		'service_territory_member','skill','skill_entity','skill_requirement','social','solution','sossession','task','task2',
+		'team_member','thanks','thanks_loading','timeslot','today','topic','unmatched','user','work_order','work_order_item',
+		'work_type'};
 
 	public class Indicator {
 		public string Color {get;set;}
@@ -115,4 +97,5 @@ public class Indicators_Service {
 	}
 
 	public class WeathervaneException extends Exception {}
+
 }

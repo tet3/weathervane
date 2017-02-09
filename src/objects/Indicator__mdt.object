@@ -143,13 +143,5 @@
     </fields>
     <label>Indicator</label>
     <pluralLabel>Indicators</pluralLabel>
-    <validationRules>
-        <fullName>Display_Value</fullName>
-        <active>true</active>
-        <errorConditionFormula>NOT(REGEX(Display_Value__c,&quot;custom[0-9]{1,3}&quot;) &amp;&amp; VALUE(RIGHT(Display_Value__c,LEN(Display_Value__c)-6)) &lt;= 113) &amp;&amp; 
-LEN(Display_Value__c) &gt; 24</errorConditionFormula>
-        <errorDisplayField>Display_Value__c</errorDisplayField>
-        <errorMessage>Must be a Standard or Custom SLDS sprite name, or a string of 4 or fewer characters.</errorMessage>
-    </validationRules>
     <visibility>Public</visibility>
 </CustomObject>
