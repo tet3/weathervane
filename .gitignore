@@ -16,3 +16,4 @@ packaged
 .*.swp
 config/*
 *.sublime-*
+test_results.*
