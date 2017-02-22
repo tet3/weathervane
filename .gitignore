@@ -17,3 +17,6 @@ packaged
 config/*
 *.sublime-*
 test_results.*
+*.sw?
+_site
+_pages
